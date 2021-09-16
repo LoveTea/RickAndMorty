@@ -1,7 +1,7 @@
 import React from 'react';
 import style from "./filterItem.module.scss"
-import {FilterType} from "../../../types/filterType";
-import InputRadio from "../inputRadio/inputRadio";
+import {FilterType} from "../../types/filterType";
+import InputRadio from "../UI/inputRadio/inputRadio";
 
 interface IProps {
     filter: FilterType,

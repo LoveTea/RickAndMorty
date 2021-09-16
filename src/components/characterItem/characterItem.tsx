@@ -1,6 +1,6 @@
 import React from 'react';
 import style from "./characterItem.module.scss"
-import {CharacterType} from "../../../types/characterType";
+import {CharacterType} from "../../types/characterType";
 
 interface Props {
     character: CharacterType,

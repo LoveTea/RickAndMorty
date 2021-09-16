@@ -2,11 +2,11 @@ import React, {useEffect, useState} from 'react';
 import "./App.css"
 import {CharacterType} from "./types/characterType";
 import {getAll, getById} from "./services/characterService";
-import CharacterList from "./components/UI/characterList/characterList";
-import CharacterForm from "./components/UI/characterForm/characterForm";
-import Modal from "./components/UI/modal/Modal";
+import CharacterList from "./components/characterList/characterList";
+import CharacterForm from "./components/characterForm/characterForm";
+import Modal from "./components/modal/Modal";
 import CharacterDetail from "./components/characterDetail/characterDetail";
-import Pagination from "./components/UI/pagination/pagination";
+import Pagination from "./components/pagination/pagination";
 
 const App = () => {
     const [characters, setCharacters] = useState<CharacterType[]>([])
