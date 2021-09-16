@@ -1,0 +1,10 @@
+body {
+  font-family: 'Urbanist', sans-serif;
+  background-color: #6D8299;
+  overflow-y: scroll;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

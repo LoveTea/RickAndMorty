@@ -1,0 +1,23 @@
+.characterList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  height: 600px;
+  overflow-y: auto;
+  margin: 0 auto;
+
+
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #e4e4e4;
+    border-radius: 100px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #D5BFBF;
+    border-radius: 100px;
+  }
+}

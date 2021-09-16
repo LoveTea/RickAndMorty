@@ -1,0 +1,20 @@
+.filterItem {
+  width: 300px;
+
+  &__title {
+    font-weight: 700;
+  }
+
+  &__items {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  &__item {
+    margin-bottom: 5px;
+
+    label {
+      margin-left: 5px;
+    }
+  }
+}

@@ -1,0 +1,13 @@
+.characterDetail {
+  display: flex;
+  flex-direction: column;
+
+  &__image {
+    width: 160px;
+    align-self: center;
+  }
+
+  &__img {
+    width: 100%;
+  }
+}

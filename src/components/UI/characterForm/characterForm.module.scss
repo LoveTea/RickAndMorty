@@ -1,0 +1,14 @@
+.characterForm {
+  margin-top: 15px;
+  margin-bottom: 30px;
+
+  &__find {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+  }
+
+  &__filters {
+    margin-bottom: 30px;
+  }
+}

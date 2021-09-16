@@ -1,0 +1,18 @@
+.pagination {
+  padding-left: 0;
+  list-style: none;
+  display: flex;
+
+  li {
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  &__activePage {
+    background-color: #F8485E;
+  }
+
+  &__activeLink {
+    color: #fff;
+  }
+}
