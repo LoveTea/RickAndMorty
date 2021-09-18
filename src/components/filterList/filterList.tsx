@@ -5,7 +5,7 @@ import {FilterType} from "../../types/filterType";
 
 interface Props {
     filters: FilterType[],
-    toggleFilter: any
+    toggleFilter: (field: string, value: string) => void
 }
 
 const FilterList = ({filters, toggleFilter}: Props) => {

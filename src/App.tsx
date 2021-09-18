@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import "./App.css"
 import {CharacterType} from "./types/characterType";
 import {getAll, getById} from "./services/characterService";
@@ -35,12 +35,14 @@ const App = () => {
     const type = React.useMemo(() => [...new Set(characters.map(c => c.type) )], [characters])
 
 
-    const filters = [
-        {id: 1, title: "Gender", nameField: "gender", values: genders},
-        {id: 2, title: "Status", nameField: "status", values: status},
-        {id: 3, title: "Species", nameField: "species", values: species},
-        {id: 4, title: "Type", nameField: "type", values: type},
-    ]
+    const filters = React.useMemo(() => {
+        return [
+            {id: 1, title: "Gender", nameField: "gender", values: genders},
+            {id: 2, title: "Status", nameField: "status", values: status},
+            {id: 3, title: "Species", nameField: "species", values: species},
+            {id: 4, title: "Type", nameField: "type", values: type},
+        ]
+    }, [genders, status, species, type])
 
     useEffect(() => {
         setIsCharactersLoading(true)
@@ -58,7 +60,7 @@ const App = () => {
 
     }, [filterFields.name, filterFields.gender, filterFields.type, filterFields.species, filterFields.status, page])
 
-    const toggleDetail = (id: number) => {
+    const toggleDetail = useCallback((id: number) => {
         setIsCharacterLoading(true)
         getById(id)
             .then(({data}) => {
@@ -73,9 +75,9 @@ const App = () => {
             .finally(() => {
                 setIsCharacterLoading(false)
             })
-    }
+    }, [])
 
-    const toggleFilter = (field: string, value: string) => {
+    const toggleFilter = useCallback((field: string, value: string) => {
         setFilterFields(prevState => {
             return {
                 ...prevState,
@@ -83,9 +85,9 @@ const App = () => {
             }
         })
         setPage(1)
-    }
+    }, [])
 
-    const submitHandler = (e: React.FormEvent) => {
+    const submitHandler = useCallback((e: React.FormEvent) => {
         e.preventDefault()
         setSearchInput("")
         setFilterFields(prevState => {
@@ -95,9 +97,9 @@ const App = () => {
             }
         })
         setPage(1)
-    }
+    }, [searchInput])
 
-    const resetForm = () => {
+    const resetForm = useCallback(() => {
         setFilterFields({
             name: '',
             status: '',
@@ -106,19 +108,19 @@ const App = () => {
             gender: ''
         })
         setPage(1)
-    }
+    }, [])
 
-    const toggleShowFilters = () => {
+    const toggleShowFilters = useCallback(() => {
         setShowFilters(prevState => !prevState)
-    }
+    }, [])
 
-    const searchFieldChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const searchFieldChangeHandler = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchInput(e.target.value)
-    }
+    }, [])
 
-    const PageChangeHandler = (page: number) => {
+    const PageChangeHandler = useCallback((page: number) => {
         setPage(page)
-    }
+    }, [])
 
     return (
         <div className="container">

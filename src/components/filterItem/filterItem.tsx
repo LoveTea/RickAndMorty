@@ -1,14 +1,14 @@
 import React from 'react';
 import style from "./filterItem.module.scss"
 import {FilterType} from "../../types/filterType";
-import InputRadio from "../UI/inputRadio/inputRadio";
+import FilterField from "../filterField/filterField";
 
-interface IProps {
+interface Props {
     filter: FilterType,
-    toggleFilter: any
+    toggleFilter: (field: string, value: string) => void
 }
 
-const FilterItem = ({filter, toggleFilter}: IProps) => {
+const FilterItem = ({filter, toggleFilter}: Props) => {
     return (
         <div
             key={filter.id}
@@ -19,20 +19,18 @@ const FilterItem = ({filter, toggleFilter}: IProps) => {
             >
                 {filter.title}
             </p>
-            <ul className={style.filterItem__items}>{filter.values.map(item => (
-                <li key={item} className={style.filterItem__item}>
-                    <InputRadio
-                        id={filter.id}
-                        title={filter.title}
-                        value={item}
-                        nameField={filter.nameField}
-                        toggleFilter={toggleFilter}
-                    />
-                    <label htmlFor={item + filter.id}>{item}</label>
-                </li>
+            <ul className={style.filterItem__items}>{filter.values.map(value => (
+                <FilterField
+                    key={value}
+                    item={filter}
+                    value={value}
+                    toggleFilter={toggleFilter}
+                />
             ))}</ul>
         </div>
     );
 };
 
-export default FilterItem;
+export default React.memo(FilterItem, (prevState, nextState) => {
+    return prevState.filter === nextState.filter
+});

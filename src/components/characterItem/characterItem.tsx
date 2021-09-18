@@ -24,4 +24,6 @@ const CharacterItem = ({character, toggleDetail}: Props) => {
     );
 };
 
-export default CharacterItem;
+export default React.memo(CharacterItem, (prevProps, nextProps) => {
+    return prevProps.character === nextProps.character
+});
