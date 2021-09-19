@@ -31,6 +31,6 @@ const FilterItem = ({filter, toggleFilter}: Props) => {
     );
 };
 
-export default React.memo(FilterItem, (prevState, nextState) => {
-    return prevState.filter === nextState.filter
+export default React.memo(FilterItem, (prevProps, nextProps) => {
+    return prevProps.filter === nextProps.filter
 });
