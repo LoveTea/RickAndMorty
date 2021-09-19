@@ -15,6 +15,10 @@ const Modal = ({children, setShow, show}: Props) => {
         <>
             <div className={style.modal__overlay} onClick={() => setShow(false)}>
                 <div className={style.modal__inner} onClick={(e) => e.stopPropagation()}>
+                    <span
+                        className={style.modal__closeButton}
+                        onClick={() => setShow(false)}
+                    >X</span>
                     {children}
                 </div>
             </div>
