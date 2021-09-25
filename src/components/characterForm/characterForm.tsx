@@ -1,27 +1,33 @@
-import React from 'react';
-import style from "./characterForm.module.scss"
-import InputText from "../UI/inputText/InputText";
-import Button from "../UI/button/button";
-import FilterList from "../filterList/filterList";
-import {FilterType} from "../../types/filterType";
+import React from 'react'
+import style from './characterForm.module.scss'
+import InputText from '../UI/inputText/InputText'
+import Button from '../UI/button/button'
+import FilterList from '../filterList/filterList'
+import { FilterType } from '../../types/filterType'
 
 interface Props {
     submitHandler: (e: React.FormEvent) => void
-    filters: FilterType[],
+    filters: FilterType[]
     toggleFilter: (field: string, value: string) => void
-    searchInput: string,
-    showFilters: boolean,
+    searchInput: string
+    showFilters: boolean
     resetForm: () => void
     toggleShowFilters: () => void
     searchFieldChangeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const CharacterForm = ({filters, submitHandler, toggleFilter, searchInput, showFilters, resetForm, toggleShowFilters, searchFieldChangeHandler}: Props) => {
+const CharacterForm = ({
+    filters,
+    submitHandler,
+    toggleFilter,
+    searchInput,
+    showFilters,
+    resetForm,
+    toggleShowFilters,
+    searchFieldChangeHandler,
+}: Props) => {
     return (
-        <form
-            className={style.characterForm}
-            onSubmit={submitHandler}
-        >
+        <form className={style.characterForm} onSubmit={submitHandler}>
             <div className={style.characterForm__find}>
                 <InputText
                     placeholder="Type character name..."
@@ -30,21 +36,20 @@ const CharacterForm = ({filters, submitHandler, toggleFilter, searchInput, showF
                 />
                 <Button type="submit">Find</Button>
             </div>
-            {showFilters ?
-                (
-                    <div className={style.characterForm__filters}>
-                        <h2>Filters</h2>
-                        <FilterList
-                            filters={filters}
-                            toggleFilter={toggleFilter}
-                        />
-                        <Button type="reset" onClick={resetForm}>Reset</Button>
-                    </div>
-                ) : null
-            }
-            <Button type="button" onClick={toggleShowFilters}>{showFilters ? "close filters" : "show filters"}</Button>
+            {showFilters ? (
+                <div className={style.characterForm__filters}>
+                    <h2>Filters</h2>
+                    <FilterList filters={filters} toggleFilter={toggleFilter} />
+                    <Button type="reset" onClick={resetForm}>
+                        Reset
+                    </Button>
+                </div>
+            ) : null}
+            <Button type="button" onClick={toggleShowFilters}>
+                {showFilters ? 'close filters' : 'show filters'}
+            </Button>
         </form>
-    );
-};
+    )
+}
 
-export default CharacterForm;
+export default CharacterForm

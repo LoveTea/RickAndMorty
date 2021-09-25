@@ -1,11 +1,11 @@
-import React from 'react';
-import style from "./button.module.scss"
+import React from 'react'
+import style from './button.module.scss'
 
-type buttonTypes = "button" | "submit" | "reset" | undefined
+type buttonTypes = 'button' | 'submit' | 'reset' | undefined
 
 interface Props {
-    children: React.ReactNode,
-    type:  buttonTypes,
+    children: React.ReactNode
+    type: buttonTypes
     onClick?: (e: React.MouseEvent<HTMLElement>) => void
 }
 
@@ -14,7 +14,7 @@ const Button = (props: Props) => {
         <button className={style.button} {...props}>
             {props.children}
         </button>
-    );
-};
+    )
+}
 
-export default React.memo(Button);
+export default React.memo(Button)

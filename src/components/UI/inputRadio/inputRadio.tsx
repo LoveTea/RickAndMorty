@@ -1,14 +1,14 @@
-import React from 'react';
+import React from 'react'
 
 interface Props {
-    id: number,
-    title: string,
+    id: number
+    title: string
     value: string
-    nameField: string,
+    nameField: string
     toggleFilter: (nameField: string, value: string) => void
 }
 
-const InputRadio = ({id, title, value, nameField, toggleFilter}: Props) => {
+const InputRadio = ({ id, title, value, nameField, toggleFilter }: Props) => {
     return (
         <input
             type="radio"
@@ -17,7 +17,7 @@ const InputRadio = ({id, title, value, nameField, toggleFilter}: Props) => {
             id={value + id}
             onChange={(e) => toggleFilter(nameField, value)}
         />
-    );
-};
+    )
+}
 
-export default InputRadio;
+export default InputRadio

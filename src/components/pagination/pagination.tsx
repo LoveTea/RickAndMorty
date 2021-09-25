@@ -1,13 +1,13 @@
-import React from 'react';
-import "./pagination.scss"
-import ReactPaginate from "react-paginate";
+import React from 'react'
+import './pagination.scss'
+import ReactPaginate from 'react-paginate'
 
 interface Props {
-    PageChangeHandler: (page: number) => void,
+    PageChangeHandler: (page: number) => void
     pageCount: number
 }
 
-const Pagination = ({PageChangeHandler, pageCount}: Props) => {
+const Pagination = ({ PageChangeHandler, pageCount }: Props) => {
     return (
         <ReactPaginate
             marginPagesDisplayed={3}
@@ -18,7 +18,7 @@ const Pagination = ({PageChangeHandler, pageCount}: Props) => {
             activeClassName="pagination__activePage"
             activeLinkClassName="pagination__activeLink"
         />
-    );
-};
+    )
+}
 
-export default Pagination;
+export default Pagination

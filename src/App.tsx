@@ -1,12 +1,12 @@
-import React, {useCallback, useEffect, useState} from 'react';
-import "./App.css"
-import {CharacterType} from "./types/characterType";
-import {getAll, getById} from "./services/characterService";
-import CharacterList from "./components/characterList/characterList";
-import CharacterForm from "./components/characterForm/characterForm";
-import Modal from "./components/modal/Modal";
-import CharacterDetail from "./components/characterDetail/characterDetail";
-import Pagination from "./components/pagination/pagination";
+import React, { useCallback, useEffect, useState } from 'react'
+import './App.css'
+import { CharacterType } from './types/characterType'
+import { getAll, getById } from './services/characterService'
+import CharacterList from './components/characterList/characterList'
+import CharacterForm from './components/characterForm/characterForm'
+import Modal from './components/modal/Modal'
+import CharacterDetail from './components/characterDetail/characterDetail'
+import Pagination from './components/pagination/pagination'
 
 const App = () => {
     const [characters, setCharacters] = useState<CharacterType[]>([])
@@ -17,37 +17,42 @@ const App = () => {
     const [isCharacterLoading, setIsCharacterLoading] = useState(false)
     const [showFilters, setShowFilters] = useState(false)
     const [page, setPage] = useState(1)
-    const [searchInput, setSearchInput] = useState("")
+    const [searchInput, setSearchInput] = useState('')
     const [showModal, setShowModal] = useState(false)
     const [pageCount, setPageCount] = useState(1)
     const [filterFields, setFilterFields] = useState({
-            name: '',
-            status: '',
-            species: '',
-            type: '',
-            gender: ''
-        }
-    )
+        name: '',
+        status: '',
+        species: '',
+        type: '',
+        gender: '',
+    })
 
-    const genders = React.useMemo(() => [...new Set(characters.map(c => c.gender) )], [characters])
-    const status = React.useMemo(() => [...new Set(characters.map(c => c.status) )], [characters])
-    const species = React.useMemo(() => [...new Set(characters.map(c => c.species) )], [characters])
-    const type = React.useMemo(() => [...new Set(characters.map(c => c.type) )], [characters])
-
+    const genders = React.useMemo(() => [...new Set(characters.map((c) => c.gender))], [characters])
+    const status = React.useMemo(() => [...new Set(characters.map((c) => c.status))], [characters])
+    const species = React.useMemo(() => [...new Set(characters.map((c) => c.species))], [characters])
+    const type = React.useMemo(() => [...new Set(characters.map((c) => c.type))], [characters])
 
     const filters = React.useMemo(() => {
         return [
-            {id: 1, title: "Gender", nameField: "gender", values: genders},
-            {id: 2, title: "Status", nameField: "status", values: status},
-            {id: 3, title: "Species", nameField: "species", values: species},
-            {id: 4, title: "Type", nameField: "type", values: type},
+            { id: 1, title: 'Gender', nameField: 'gender', values: genders },
+            { id: 2, title: 'Status', nameField: 'status', values: status },
+            { id: 3, title: 'Species', nameField: 'species', values: species },
+            { id: 4, title: 'Type', nameField: 'type', values: type },
         ]
     }, [genders, status, species, type])
 
     useEffect(() => {
         setIsCharactersLoading(true)
-        getAll(filterFields.name, filterFields.gender, filterFields.type, filterFields.species, filterFields.status, page)
-            .then(({data}) => {
+        getAll(
+            filterFields.name,
+            filterFields.gender,
+            filterFields.type,
+            filterFields.species,
+            filterFields.status,
+            page
+        )
+            .then(({ data }) => {
                 setPageCount(data.info.pages)
                 setCharacters(data.results)
             })
@@ -57,13 +62,12 @@ const App = () => {
             .finally(() => {
                 setIsCharactersLoading(false)
             })
-
     }, [filterFields.name, filterFields.gender, filterFields.type, filterFields.species, filterFields.status, page])
 
     const toggleDetail = useCallback((id: number) => {
         setIsCharacterLoading(true)
         getById(id)
-            .then(({data}) => {
+            .then(({ data }) => {
                 setCharacter(data)
             })
             .then(() => {
@@ -78,7 +82,7 @@ const App = () => {
     }, [])
 
     const toggleFilter = useCallback((field: string, value: string) => {
-        setFilterFields(prevState => {
+        setFilterFields((prevState) => {
             return {
                 ...prevState,
                 [field]: value,
@@ -87,17 +91,20 @@ const App = () => {
         setPage(1)
     }, [])
 
-    const submitHandler = useCallback((e: React.FormEvent) => {
-        e.preventDefault()
-        setSearchInput("")
-        setFilterFields(prevState => {
-            return {
-                ...prevState,
-                name: searchInput
-            }
-        })
-        setPage(1)
-    }, [searchInput])
+    const submitHandler = useCallback(
+        (e: React.FormEvent) => {
+            e.preventDefault()
+            setSearchInput('')
+            setFilterFields((prevState) => {
+                return {
+                    ...prevState,
+                    name: searchInput,
+                }
+            })
+            setPage(1)
+        },
+        [searchInput]
+    )
 
     const resetForm = useCallback(() => {
         setFilterFields({
@@ -105,13 +112,13 @@ const App = () => {
             status: '',
             species: '',
             type: '',
-            gender: ''
+            gender: '',
         })
         setPage(1)
     }, [])
 
     const toggleShowFilters = useCallback(() => {
-        setShowFilters(prevState => !prevState)
+        setShowFilters((prevState) => !prevState)
     }, [])
 
     const searchFieldChangeHandler = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
@@ -140,25 +147,12 @@ const App = () => {
                 isLoading={isCharactersLoading}
                 error={charactersError}
             />
-            {
-                pageCount > 1 && (
-                    <Pagination
-                    PageChangeHandler={PageChangeHandler}
-                    pageCount={pageCount}
-                />)
-            }
-            <Modal
-                show={showModal}
-                setShow={setShowModal}
-            >
-                <CharacterDetail
-                    character={character}
-                    isLoading={isCharacterLoading}
-                    error={characterError}
-                />
+            {pageCount > 1 && <Pagination PageChangeHandler={PageChangeHandler} pageCount={pageCount} />}
+            <Modal show={showModal} setShow={setShowModal}>
+                <CharacterDetail character={character} isLoading={isCharacterLoading} error={characterError} />
             </Modal>
         </div>
-    );
-};
+    )
+}
 
-export default App;
+export default App
