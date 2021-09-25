@@ -1,9 +1,8 @@
 import React from 'react'
 import style from './characterForm.module.scss'
-import InputText from '../UI/inputText/InputText'
-import Button from '../UI/button/button'
 import FilterList from '../filterList/filterList'
 import { FilterType } from '../../types/filterType'
+import { Button, InputText } from '../UI'
 
 interface Props {
     submitHandler: (e: React.FormEvent) => void

@@ -1,7 +1,7 @@
 import React from 'react'
 import style from './filterList.module.scss'
-import FilterItem from '../filterItem/filterItem'
 import { FilterType } from '../../types/filterType'
+import { FilterItem } from '../index'
 
 interface Props {
     filters: FilterType[]

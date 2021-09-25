@@ -1,7 +1,7 @@
 import React from 'react'
 import style from '../filterItem/filterItem.module.scss'
-import InputRadio from '../UI/inputRadio/inputRadio'
 import { FilterType } from '../../types/filterType'
+import { InputRadio } from '../UI'
 
 interface Props {
     value: string

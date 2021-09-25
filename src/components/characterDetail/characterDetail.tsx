@@ -2,7 +2,7 @@ import React from 'react'
 import style from './characterDetail.module.scss'
 import { CharacterType } from '../../types/characterType'
 import Loader from '../UI/loader/loader'
-import ErrorIndicator from '../errorIndicator/errorIndicator'
+import { ErrorIndicator } from '../index'
 
 interface Props {
     character: CharacterType

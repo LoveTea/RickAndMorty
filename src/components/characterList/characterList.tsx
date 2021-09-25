@@ -1,9 +1,8 @@
 import React from 'react'
 import style from './characterList.module.scss'
 import { CharacterType } from '../../types/characterType'
-import CharacterItem from '../characterItem/characterItem'
 import Loader from '../UI/loader/loader'
-import ErrorIndicator from '../errorIndicator/errorIndicator'
+import { CharacterItem, ErrorIndicator } from '../index'
 
 interface Props {
     characters: CharacterType[] | []

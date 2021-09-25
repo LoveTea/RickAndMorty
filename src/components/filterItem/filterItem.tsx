@@ -1,7 +1,7 @@
 import React from 'react'
 import style from './filterItem.module.scss'
 import { FilterType } from '../../types/filterType'
-import FilterField from '../filterField/filterField'
+import { FilterField } from '../index'
 
 interface Props {
     filter: FilterType

@@ -2,11 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import './App.css'
 import { CharacterType } from './types/characterType'
 import { getAll, getById } from './services/characterService'
-import CharacterList from './components/characterList/characterList'
-import CharacterForm from './components/characterForm/characterForm'
-import Modal from './components/modal/Modal'
-import CharacterDetail from './components/characterDetail/characterDetail'
-import Pagination from './components/pagination/pagination'
+import { CharacterDetail, CharacterForm, CharacterList, Modal, Pagination } from './components'
 
 const App = () => {
     const [characters, setCharacters] = useState<CharacterType[]>([])
