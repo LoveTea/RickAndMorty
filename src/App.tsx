@@ -1,8 +1,9 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import './App.css'
 import { CharacterType } from './types/characterType'
 import { getAll, getById } from './services/characterService'
 import { CharacterDetail, CharacterForm, CharacterList, Modal, Pagination } from './components'
+import { CSSTransition } from 'react-transition-group'
 
 const App = () => {
     const [characters, setCharacters] = useState<CharacterType[]>([])
@@ -15,6 +16,7 @@ const App = () => {
     const [page, setPage] = useState(1)
     const [searchInput, setSearchInput] = useState('')
     const [showModal, setShowModal] = useState(false)
+    const modalRef = useRef(null)
     const [pageCount, setPageCount] = useState(1)
     const [filterFields, setFilterFields] = useState({
         name: '',
@@ -144,9 +146,18 @@ const App = () => {
                 error={charactersError}
             />
             {pageCount > 1 && <Pagination PageChangeHandler={PageChangeHandler} pageCount={pageCount} />}
-            <Modal show={showModal} setShow={setShowModal}>
-                <CharacterDetail character={character} isLoading={isCharacterLoading} error={characterError} />
-            </Modal>
+            <CSSTransition
+                classNames="modal"
+                in={showModal}
+                timeout={300}
+                mountOnEnter
+                unmountOnExit
+                nodeRef={modalRef}
+            >
+                <Modal show={showModal} setShow={setShowModal}>
+                    <CharacterDetail character={character} isLoading={isCharacterLoading} error={characterError} />
+                </Modal>
+            </CSSTransition>
         </div>
     )
 }
