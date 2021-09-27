@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import ReactDOM from 'react-dom'
-import style from './modal.module.scss'
+import { CSSTransition } from 'react-transition-group'
+import './modal.scss'
 
 interface Props {
     children: React.ReactNode
@@ -9,19 +10,19 @@ interface Props {
 }
 
 const Modal = ({ children, setShow, show }: Props) => {
-    if (!show) return null
+    const ref = useRef(null)
 
     return ReactDOM.createPortal(
-        <>
-            <div className={style.modal__overlay} onClick={() => setShow(false)}>
-                <div className={style.modal__inner} onClick={(e) => e.stopPropagation()}>
-                    <span className={style.modal__closeButton} onClick={() => setShow(false)}>
+        <CSSTransition classNames="modal" in={show} timeout={300} unmountOnExit nodeRef={ref}>
+            <div className="modal__overlay" onClick={() => setShow(false)} ref={ref}>
+                <div className="modal__inner" onClick={(e) => e.stopPropagation()}>
+                    <span className="modal__closeButton" onClick={() => setShow(false)}>
                         X
                     </span>
                     {children}
                 </div>
             </div>
-        </>,
+        </CSSTransition>,
         document.getElementById('modal') as HTMLElement
     )
 }
