@@ -154,7 +154,7 @@ const App = () => {
                 unmountOnExit
                 nodeRef={modalRef}
             >
-                <Modal show={showModal} setShow={setShowModal}>
+                <Modal show={showModal} setShow={setShowModal} ref={modalRef}>
                     <CharacterDetail character={character} isLoading={isCharacterLoading} error={characterError} />
                 </Modal>
             </CSSTransition>
